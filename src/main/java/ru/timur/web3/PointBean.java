@@ -5,6 +5,7 @@ import jakarta.inject.Named;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @RequestScoped
 @Named
@@ -13,7 +14,7 @@ public class PointBean implements Serializable {
     private double y;
     private double r;
     private boolean hit;
-    private LocalDateTime time;
+    private Date time;
     private long calculationTime;
 
     public PointBean() {}
@@ -58,11 +59,11 @@ public class PointBean implements Serializable {
         this.calculationTime = calculationTime;
     }
 
-    public LocalDateTime getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 }

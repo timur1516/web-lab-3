@@ -10,7 +10,7 @@ import java.util.List;
 @Named
 @SessionScoped
 public class ArchiveBean implements Serializable {
-    private final List<PointBean> archive = new ArrayList<PointBean>();
+    private final List<PointBean> archive = new ArrayList<>();
     public List<PointBean> getArchive() {
         return archive;
     }

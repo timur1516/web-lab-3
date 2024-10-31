@@ -77,9 +77,7 @@ function draw_batman(r) {
     });
 }
 
-// draw_batman(5)
-
-window.addEventListener("load", load_points);
+window.addEventListener("load", load_data);
 
 const message_type = Object.freeze({
     OK: 1,
@@ -214,24 +212,15 @@ function show_user_message(message) {
     }
 }
 
-// Функция валидации данных формы
-function validate_data(x, y, r) {
-    if (x == null || y == null || r == null || y === "") return message_type.EMPTY_FIELDS;
-    return message_type.OK;
-}
-
-function load_points() {
-    fetch(`controller?data`)
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            if (data == null) return;
-            data.data.forEach(point => {
-                draw_point(point, point.hit ? 'green' : 'red');
-            });
-        })
-        .catch(() => {
-            show_user_message(message_type.SOME_SERVER_ERROR);
-        });
+function load_data() {
+    draw_batman(Number(document.getElementById("form:r_slider").value));
+    const table = document.querySelector("#archive tbody");
+    const rows = table.querySelectorAll("tr");
+    rows.forEach(row =>{
+        let cells = row.querySelectorAll("td");
+        let x = Number(cells[0].textContent);
+        let y = Number(cells[1].textContent);
+        let hit = cells[3].textContent === 'Попал';
+        draw_point({x,y}, hit ? 'green' : 'red');
+    })
 }

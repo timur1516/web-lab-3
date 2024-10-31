@@ -5,13 +5,14 @@ import jakarta.inject.Named;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @SessionScoped
 @Named
 public class AreaCheckBean implements Serializable {
     public PointBean processInput(InputBean input) {
         PointBean pointBean = new PointBean();
-        pointBean.setTime(LocalDateTime.now());
+        pointBean.setTime(new Date());
         pointBean.setX(input.getX());
         pointBean.setY(input.getY());
         pointBean.setR(input.getR());

@@ -15,34 +15,37 @@
         <h:outputScript name="main.js" library="js" target="body"/>
     </ui:define>
     <ui:define name="content">
-        <p id="error_field"></p>
+        <p:messages id="messages" closable="true"/>
         <div class="main_form" id="main_form">
             <h:form class="form" id="form">
                 <div class="form_input">
                     <p class="form_input x_label">X:</p>
                     <div class="form_input x_text">
-                        <h:inputText value="#{inputBean.x}"/>
+                        <h:inputText
+                                value="#{inputBean.x}"
+                                required="true"
+                                requiredMessage="Введите X"
+                                validatorMessage="Значение X должно быть в пределах от -3 до 3"
+                                converterMessage="Значение X должно быть целым или дробным числом">
+                            <f:validateDoubleRange minimum="-3.0" maximum="3.0"/>
+                        </h:inputText>
                     </div>
-                </div>
-                <div class="form_input">
-                    <div class="slider_box">
-                        <h:outputText id="y_slider_output" value="Y: #{inputBean.y}"/>
-                        <h:inputHidden id="y_slider" value="#{inputBean.y}" style="width: 150px;"/>
-                        <p:slider for="y_slider" minValue="-2" maxValue="2" step="1" display="y_slider_output" displayTemplate="Y: {value}" style="width: 150px; margin-top: 10px"/>
+                    <h:outputText id="y_label" value="Y: #{inputBean.y}" styleClass="form_input y_label"/>
+                    <div class="form_input y_slider">
+                        <h:inputHidden id="y_slider" value="#{inputBean.y}"/>
+                        <p:slider for="y_slider" minValue="-2" maxValue="2" step="1" display="y_label"
+                                  displayTemplate="Y: {value}"/>
                     </div>
-                </div>
-                <div class="form_input">
-                    <div class="slider_box">
-                        <h:outputText id="r_slider_output" value="R: #{inputBean.r}"/>
+                    <h:outputText id="r_label" value="R: #{inputBean.r}" styleClass="form_input r_label"/>
+                    <div class="form_input r_slider">
                         <h:inputHidden id="r_slider" value="#{inputBean.r}" style="width: 150px;"/>
-                        <p:slider for="r_slider" minValue="1" maxValue="4" step="0.25" display="r_slider_output" displayTemplate="R: {value}" style="width: 150px; margin-top: 10px" onSlide="draw_batman(ui.value);"/>
+                        <p:slider for="r_slider" minValue="1" maxValue="4" step="0.25" display="r_label"
+                                  displayTemplate="R: {value}" onSlide="draw_batman(ui.value);"/>
                     </div>
                 </div>
-                <div class="form_input">
-                    <h:commandButton actionListener="#{controllerBean.processRequest()}" value="Отправить">
-                        <f:ajax execute="@form" render="@form archive" />
-                    </h:commandButton>
-                </div>
+                <h:commandButton actionListener="#{controllerBean.processRequest()}" value="Отправить">
+                    <f:ajax execute="@form" render="archive messages"/>
+                </h:commandButton>
             </h:form>
             <div id="calculator"></div>
         </div>
@@ -62,29 +65,20 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Попадание</f:facet>
-                    <h:outputText value="#{p.hit}"/>
+                    <h:outputText value="#{p.hit ? 'Попал' : 'Промазал'}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Время запроса</f:facet>
-                    <h:outputText value="#{p.time}"/>
+                    <h:outputText value="#{p.time}">
+                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
+                    </h:outputText>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Время выполнения</f:facet>
                     <h:outputText value="#{p.calculationTime}"/>
                 </h:column>
             </h:dataTable>
-            <!--            <table id="history_table">-->
-<!--                <thead>-->
-<!--                <tr>-->
-<!--                    <th>X</th>-->
-<!--                    <th>Y</th>-->
-<!--                    <th>R</th>-->
-<!--                    <th>Попадание</th>-->
-<!--                    <th>Время запроса</th>-->
-<!--                    <th>Время выполнения</th>-->
-<!--                </tr>-->
-<!--                </thead>-->
-<!--            </table>-->
+
         </div>
     </ui:define>
 </ui:composition>
