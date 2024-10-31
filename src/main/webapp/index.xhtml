@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="templates/common/commonLayout.xhtml">
+    <ui:define name="title">ЛР3</ui:define>
+    <ui:define name="css">
+        <h:outputStylesheet name="main.css" library="css"/>
+    </ui:define>
+    <ui:define name="js">
+        <h:outputScript name="calculator.js" library="js" target="body"/>
+        <h:outputScript name="main.js" library="js" target="body"/>
+    </ui:define>
+    <ui:define name="content">
+        <p id="error_field"></p>
+        <div class="main_form" id="main_form">
+            <h:form class="form" id="form">
+                <div class="form_input">
+                    <p class="form_input x_label">X:</p>
+                    <div class="form_input x_text">
+                        <h:inputText value="#{inputBean.x}"/>
+                    </div>
+                </div>
+                <div class="form_input">
+                    <div class="slider_box">
+                        <h:outputText id="y_slider_output" value="Y: #{inputBean.y}"/>
+                        <h:inputHidden id="y_slider" value="#{inputBean.y}" style="width: 150px;"/>
+                        <p:slider for="y_slider" minValue="-2" maxValue="2" step="1" display="y_slider_output" displayTemplate="Y: {value}" style="width: 150px; margin-top: 10px"/>
+                    </div>
+                </div>
+                <div class="form_input">
+                    <div class="slider_box">
+                        <h:outputText id="r_slider_output" value="R: #{inputBean.r}"/>
+                        <h:inputHidden id="r_slider" value="#{inputBean.r}" style="width: 150px;"/>
+                        <p:slider for="r_slider" minValue="1" maxValue="4" step="0.25" display="r_slider_output" displayTemplate="R: {value}" style="width: 150px; margin-top: 10px" onSlide="draw_batman(ui.value);"/>
+                    </div>
+                </div>
+                <div class="form_input">
+                    <h:commandButton actionListener="#{controllerBean.processRequest()}" value="Отправить">
+                        <f:ajax execute="@form" render="@form archive" />
+                    </h:commandButton>
+                </div>
+            </h:form>
+            <div id="calculator"></div>
+        </div>
+        <div class="history">
+            <h:dataTable id="archive" value="#{archiveBean.archive}" var="p" styleClass="history_table">
+                <h:column>
+                    <f:facet name="header">X</f:facet>
+                    <h:outputText value="#{p.x}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Y</f:facet>
+                    <h:outputText value="#{p.y}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">R</f:facet>
+                    <h:outputText value="#{p.r}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Попадание</f:facet>
+                    <h:outputText value="#{p.hit}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Время запроса</f:facet>
+                    <h:outputText value="#{p.time}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Время выполнения</f:facet>
+                    <h:outputText value="#{p.calculationTime}"/>
+                </h:column>
+            </h:dataTable>
+            <!--            <table id="history_table">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>X</th>-->
+<!--                    <th>Y</th>-->
+<!--                    <th>R</th>-->
+<!--                    <th>Попадание</th>-->
+<!--                    <th>Время запроса</th>-->
+<!--                    <th>Время выполнения</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--            </table>-->
+        </div>
+    </ui:define>
+</ui:composition>
+
+</html>
