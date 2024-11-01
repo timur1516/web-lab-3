@@ -4,17 +4,22 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 @Named
 @SessionScoped
 public class ArchiveBean implements Serializable {
-    private final List<PointBean> archive = new ArrayList<>();
-    public List<PointBean> getArchive() {
+    private final LinkedList<PointBean> archive = new LinkedList<>();
+
+    public LinkedList<PointBean> getArchive() {
         return archive;
     }
+
     public void addPoint(PointBean point) {
-        archive.add(point);
+        archive.addFirst(point);
+    }
+
+    public PointBean getFirstPoint(){
+        return archive.getFirst();
     }
 }

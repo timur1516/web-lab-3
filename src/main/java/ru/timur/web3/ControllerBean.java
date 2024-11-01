@@ -3,6 +3,7 @@ package ru.timur.web3;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import org.primefaces.PrimeFaces;
 
 import java.io.Serializable;
 
@@ -16,7 +17,9 @@ public class ControllerBean implements Serializable {
     @Inject
     private AreaCheckBean areaCheckBean;
 
-    public void processRequest(){
+    public void processRequest() {
         archive.addPoint(areaCheckBean.processInput(inputBean));
+        PointBean pointBean = archive.getFirstPoint();
+        PrimeFaces.current().executeScript("draw_point(" + pointBean.getX() + ", " + pointBean.getY() + ", " + pointBean.isHit() + ");");
     }
 }

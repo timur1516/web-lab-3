@@ -8,79 +8,13 @@
 <ui:composition template="templates/common/commonLayout.xhtml">
     <ui:define name="title">ЛР3</ui:define>
     <ui:define name="css">
-        <h:outputStylesheet name="main.css" library="css"/>
-    </ui:define>
-    <ui:define name="js">
-        <h:outputScript name="calculator.js" library="js" target="body"/>
-        <h:outputScript name="main.js" library="js" target="body"/>
+        <h:outputStylesheet name="index.css" library="css"/>
     </ui:define>
     <ui:define name="content">
-        <p:messages id="messages" closable="true"/>
-        <div class="main_form" id="main_form">
-            <h:form class="form" id="form">
-                <div class="form_input">
-                    <p class="form_input x_label">X:</p>
-                    <div class="form_input x_text">
-                        <h:inputText
-                                value="#{inputBean.x}"
-                                required="true"
-                                requiredMessage="Введите X"
-                                validatorMessage="Значение X должно быть в пределах от -3 до 3"
-                                converterMessage="Значение X должно быть целым или дробным числом">
-                            <f:validateDoubleRange minimum="-3.0" maximum="3.0"/>
-                        </h:inputText>
-                    </div>
-                    <h:outputText id="y_label" value="Y: #{inputBean.y}" styleClass="form_input y_label"/>
-                    <div class="form_input y_slider">
-                        <h:inputHidden id="y_slider" value="#{inputBean.y}"/>
-                        <p:slider for="y_slider" minValue="-2" maxValue="2" step="1" display="y_label"
-                                  displayTemplate="Y: {value}"/>
-                    </div>
-                    <h:outputText id="r_label" value="R: #{inputBean.r}" styleClass="form_input r_label"/>
-                    <div class="form_input r_slider">
-                        <h:inputHidden id="r_slider" value="#{inputBean.r}" style="width: 150px;"/>
-                        <p:slider for="r_slider" minValue="1" maxValue="4" step="0.25" display="r_label"
-                                  displayTemplate="R: {value}" onSlide="draw_batman(ui.value);"/>
-                    </div>
-                </div>
-                <h:commandButton actionListener="#{controllerBean.processRequest()}" value="Отправить">
-                    <f:ajax execute="@form" render="archive messages"/>
-                </h:commandButton>
-            </h:form>
-            <div id="calculator"></div>
+        <div id="clocks">
+            ТУТ БУДУТ ЧАСЫ
         </div>
-        <div class="history">
-            <h:dataTable id="archive" value="#{archiveBean.archive}" var="p" styleClass="history_table">
-                <h:column>
-                    <f:facet name="header">X</f:facet>
-                    <h:outputText value="#{p.x}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Y</f:facet>
-                    <h:outputText value="#{p.y}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">R</f:facet>
-                    <h:outputText value="#{p.r}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Попадание</f:facet>
-                    <h:outputText value="#{p.hit ? 'Попал' : 'Промазал'}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Время запроса</f:facet>
-                    <h:outputText value="#{p.time}">
-                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
-                    </h:outputText>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Время выполнения</f:facet>
-                    <h:outputText value="#{p.calculationTime}"/>
-                </h:column>
-            </h:dataTable>
-
-        </div>
+        <h:button id="main_page_button" value="Перейти к форме"/>
     </ui:define>
 </ui:composition>
-
 </html>

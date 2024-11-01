@@ -1,0 +1,22 @@
+#content {
+    justify-content: center;
+    align-items: center;
+}
+
+#clocks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 10px;
+    border: 2px solid blue;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 10px blue;
+}
+
+button {
+    font-size: inherit;
+    width: auto;
+    padding: 5px;
+    border-radius: 10px;
+}
