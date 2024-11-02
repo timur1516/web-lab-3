@@ -42,3 +42,13 @@ html, body{
     justify-content: flex-start;
     font-size: 17px;
 }
+
+a {
+    text-decoration: none;
+}
+
+.linkButton {
+    width: fit-content;
+    margin: 10px !important;
+    background-color: #020920 !important;
+}

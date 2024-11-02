@@ -12,9 +12,10 @@
     </ui:define>
     <ui:define name="content">
         <div id="clocks">
-            ТУТ БУДУТ ЧАСЫ
+            <h:outputText id="time_output" value="#{timeBean.time}"/>
+            <p:poll interval="8" update="time_output"/>
         </div>
-        <h:button id="main_page_button" value="Перейти к форме"/>
+        <p:linkButton value="Перейти к форме" outcome="goToMain" styleClass="linkButton"/>
     </ui:define>
 </ui:composition>
 </html>

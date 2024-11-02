@@ -3,6 +3,10 @@
     align-items: center;
 }
 
+#clocks{
+    font-size: 50px;
+}
+
 #clocks {
     display: flex;
     flex-direction: row;
@@ -12,11 +16,4 @@
     border: 2px solid blue;
     border-radius: 20px;
     box-shadow: 0 0 10px 10px blue;
-}
-
-button {
-    font-size: inherit;
-    width: auto;
-    padding: 5px;
-    border-radius: 10px;
 }

@@ -15,6 +15,7 @@
         <h:outputScript name="main.js" library="js" target="body"/>
     </ui:define>
     <ui:define name="content">
+        <p:linkButton value="На главную" outcome="goToIndex" styleClass="linkButton"/>
         <p:remoteCommand name="checkPoint" update="archive" action="#{remoteCommandView.execute}"/>
         <p:messages id="messages" closable="true"/>
         <div class="main_form" id="main_form">
