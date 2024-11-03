@@ -1,10 +1,11 @@
-package ru.timur.web3;
+package ru.timur.web3.controller;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
+import ru.timur.web3.model.PointBean;
+import ru.timur.web3.view.InputBean;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @SessionScoped

@@ -1,4 +1,4 @@
-package ru.timur.web3;
+package ru.timur.web3.view;
 
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
