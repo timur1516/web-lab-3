@@ -19,9 +19,7 @@ import java.util.Date;
 @Entity
 @Table(name = "ARCHIVE")
 
-@SessionScoped
-@Named
-public class PointBean implements Serializable {
+public class PointBean implements Serializable, Comparable<PointBean> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -44,4 +42,10 @@ public class PointBean implements Serializable {
 
     @Column(name = "CALC_TIME", nullable = false)
     private long calculationTime;
+
+    @Override
+    public int compareTo(PointBean o) {
+        if(this.id == o.id) return 0;
+        return this.id < o.id ? -1 : 1;
+    }
 }

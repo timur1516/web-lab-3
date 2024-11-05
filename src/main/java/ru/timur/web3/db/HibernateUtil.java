@@ -1,24 +1,31 @@
 package ru.timur.web3.db;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import jakarta.enterprise.inject.Produces;
+import lombok.NoArgsConstructor;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+@NoArgsConstructor
 @ApplicationScoped
 public class HibernateUtil {
-    private static final SessionFactory sessionFactory =
-            new Configuration().configure("/META-INF/hibernate.cfg.xml").buildSessionFactory();
+    private SessionFactory sessionFactory;
+
+    @PostConstruct
+    private void init() {
+        sessionFactory = new Configuration().configure("/META-INF/hibernate.cfg.xml").buildSessionFactory();
+    }
 
     @Produces
-    public static SessionFactory getSessionFactory() {
+    public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
     @PreDestroy
-    public static void closeSessionFactory() {
+    public void closeSessionFactory() {
         sessionFactory.close();
     }
 }

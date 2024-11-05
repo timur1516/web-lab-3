@@ -7,14 +7,13 @@
         <!-- Database connection properties - Driver, URL, user, password -->
         <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
         <property name="hibernate.connection.url">jdbc:oracle:thin:@//localhost:1521/orcl</property>
-        <property name="hibernate.connection.username">system</property>
-        <property name="hibernate.connection.password">Cnegby1516</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.connection.username">labs</property>
+        <property name="hibernate.connection.password">lab_user_passwd</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
 
         <!-- org.hibernate.HibernateException: No CurrentSessionContext configured! -->
         <property name="hibernate.current_session_context_class">thread</property>
 
-        <!-- Mapping with model class containing annotations -->
         <mapping class="ru.timur.web3.model.PointBean"/>
     </session-factory>
 </hibernate-configuration>

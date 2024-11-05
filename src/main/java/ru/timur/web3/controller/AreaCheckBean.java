@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 @SessionScoped
-@Named
 public class AreaCheckBean implements Serializable {
     public PointBean processInput(InputBean input) {
         PointBean pointBean = new PointBean();

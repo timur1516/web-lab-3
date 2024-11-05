@@ -16,7 +16,7 @@
     </ui:define>
     <ui:define name="content">
         <p:linkButton value="На главную" outcome="goToIndex" styleClass="linkButton"/>
-        <p:remoteCommand name="checkPoint" update="archive" action="#{remoteCommandView.execute}"/>
+        <p:remoteCommand name="checkPoint" update="archive" action="#{remoteCommandView.execute}" process="@this"/>
         <p:messages id="messages" closable="true"/>
         <div class="main_form" id="main_form">
             <h:form class="form" id="form">
@@ -42,7 +42,9 @@
                     <div class="form_input r_slider">
                         <h:inputHidden id="r_slider" value="#{inputBean.r}"/>
                         <p:slider for="r_slider" minValue="1" maxValue="4" step="0.25" display="r_label"
-                                  displayTemplate="R: {value}" onSlide="draw_batman(ui.value);"/>
+                                  displayTemplate="R: {value}" onSlide="draw_batman(ui.value);">
+                            <p:ajax listener="#{inputBean.updateR}" immediate="true"/>
+                        </p:slider>
                     </div>
                 </div>
                 <h:commandButton actionListener="#{controllerBean.processRequest()}" value="Отправить">

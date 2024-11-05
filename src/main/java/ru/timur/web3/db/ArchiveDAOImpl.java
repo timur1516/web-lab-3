@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import ru.timur.web3.model.PointBean;
 
 import java.io.Serializable;
+import java.util.List;
 
 @ApplicationScoped
 public class ArchiveDAOImpl implements ArchiveDAO, Serializable {
@@ -26,5 +27,19 @@ public class ArchiveDAOImpl implements ArchiveDAO, Serializable {
             transaction.rollback();
             throw new Exception(e);
         }
+    }
+
+    public List<PointBean> loadData() throws Exception {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        List<PointBean> pointBeans;
+        try (session) {
+            pointBeans = session.createQuery("from PointBean", PointBean.class).getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+            throw new Exception(e);
+        }
+        return pointBeans;
     }
 }
