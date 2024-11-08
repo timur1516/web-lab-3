@@ -4,10 +4,6 @@
         "https://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
-        <property name="hibernate.connection.url">jdbc:oracle:thin:@//localhost:1521/orcl</property>
-        <property name="hibernate.connection.username">labs</property>
-        <property name="hibernate.connection.password">lab_user_passwd</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <property name="hibernate.current_session_context_class">thread</property>
