@@ -6,6 +6,7 @@
       xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
+    <meta http-equiv="refresh" content="#{facesContext.externalContext.sessionMaxInactiveInterval};url=#{request.contextPath}/index.xhtml"/>
     <title><ui:insert name="title">Page title</ui:insert></title>
     <h:outputStylesheet name="common.css" library="css"/>
     <ui:insert name="css"/>

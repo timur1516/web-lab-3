@@ -33,7 +33,7 @@ public class ArchiveBean implements Serializable {
         }
     }
 
-    public void addPoint(PointBean point) {
+    public synchronized void addPoint(PointBean point) {
         try {
             archiveDAO.savePoint(point);
         } catch (Exception e) {
@@ -43,11 +43,11 @@ public class ArchiveBean implements Serializable {
         archive.addFirst(point);
     }
 
-    public PointBean getFirstPoint() {
+    public synchronized PointBean getFirstPoint() {
         return archive.isEmpty() ? null : archive.getFirst();
     }
 
-    public void removeSessionData(String sessionId) {
+    public synchronized void removeSessionData(String sessionId) {
         try {
             archiveDAO.removePointsBySession(sessionId);
         } catch (Exception e) {
