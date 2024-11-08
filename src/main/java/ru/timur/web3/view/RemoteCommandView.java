@@ -1,18 +1,13 @@
 package ru.timur.web3.view;
 
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import org.primefaces.PrimeFaces;
-import ru.timur.web3.controller.AreaCheckBean;
-import ru.timur.web3.db.ArchiveDAO;
 import ru.timur.web3.model.ArchiveBean;
 import ru.timur.web3.controller.ControllerBean;
-import ru.timur.web3.model.PointBean;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 @Named

@@ -40,6 +40,9 @@ public class PointBean implements Serializable, Comparable<PointBean> {
     @Column(name = "CALC_TIME", nullable = false)
     private long calculationTime;
 
+    @Column(name = "SESSION_ID", nullable = false)
+    private String sessionId;
+
     @Override
     public int compareTo(PointBean o) {
         if (this.id == o.id) return 0;

@@ -40,4 +40,18 @@ public class ArchiveDAOImpl implements ArchiveDAO, Serializable {
         }
         return pointBeans;
     }
+
+    @Override
+    public void removePointsBySession(String sessionId) throws Exception {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        try (session) {
+            session.createMutationQuery("delete from PointBean where sessionId = :sessionId")
+                    .setParameter("sessionId", sessionId).executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+            throw new Exception(e);
+        }
+    }
 }

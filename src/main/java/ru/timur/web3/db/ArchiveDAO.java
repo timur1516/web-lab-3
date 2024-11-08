@@ -7,4 +7,5 @@ import java.util.List;
 public interface ArchiveDAO {
     void savePoint(PointBean pointBean) throws Exception;
     List<PointBean> loadData() throws Exception;
+    void removePointsBySession(String sessionId) throws Exception;
 }

@@ -1,8 +1,10 @@
 package ru.timur.web3.controller;
 
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.servlet.http.HttpSession;
 import org.primefaces.PrimeFaces;
 import ru.timur.web3.db.ArchiveDAO;
 import ru.timur.web3.model.ArchiveBean;
@@ -24,6 +26,9 @@ public class ControllerBean implements Serializable {
 
     public void processRequest() {
         PointBean newPoint = areaCheckBean.processInput(inputBean);
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+        newPoint.setSessionId(session == null ? "undefined" : session.getId());
         archiveBean.addPoint(newPoint);
         PrimeFaces.current().executeScript("draw_point(" + newPoint.getX() + ", " + newPoint.getY() + ", " + newPoint.isHit() + ");");
     }

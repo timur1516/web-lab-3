@@ -46,4 +46,14 @@ public class ArchiveBean implements Serializable {
     public PointBean getFirstPoint() {
         return archive.isEmpty() ? null : archive.getFirst();
     }
+
+    public void removeSessionData(String sessionId) {
+        try {
+            archiveDAO.removePointsBySession(sessionId);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return;
+        }
+        archive.removeIf(point -> point.getSessionId().equals(sessionId));
+    }
 }
