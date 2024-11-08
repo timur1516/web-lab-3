@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.io.Serializable;
+
 @NoArgsConstructor
 @ApplicationScoped
-public class HibernateUtil {
+public class HibernateUtil implements Serializable {
     private SessionFactory sessionFactory;
 
     @PostConstruct

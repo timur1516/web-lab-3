@@ -1,7 +1,5 @@
 package ru.timur.web3.view;
 
-import jakarta.el.MethodExpression;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import lombok.Getter;

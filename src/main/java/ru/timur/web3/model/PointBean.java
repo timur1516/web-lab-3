@@ -1,7 +1,5 @@
 package ru.timur.web3.model;
 
-import jakarta.enterprise.context.SessionScoped;
-import jakarta.inject.Named;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +16,6 @@ import java.util.Date;
 
 @Entity
 @Table(name = "ARCHIVE")
-
 public class PointBean implements Serializable, Comparable<PointBean> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,7 +42,7 @@ public class PointBean implements Serializable, Comparable<PointBean> {
 
     @Override
     public int compareTo(PointBean o) {
-        if(this.id == o.id) return 0;
+        if (this.id == o.id) return 0;
         return this.id < o.id ? -1 : 1;
     }
 }

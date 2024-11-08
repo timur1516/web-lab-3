@@ -1,9 +1,7 @@
 package ru.timur.web3.db;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Inject;
-import jakarta.inject.Named;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -17,7 +15,7 @@ public class ArchiveDAOImpl implements ArchiveDAO, Serializable {
     @Inject
     private SessionFactory sessionFactory;
 
-    public void saveData(PointBean pointBean) throws Exception {
+    public void savePoint(PointBean pointBean) throws Exception {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try (session) {

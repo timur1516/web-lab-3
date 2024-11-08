@@ -1,7 +1,6 @@
 package ru.timur.web3.controller;
 
 import jakarta.enterprise.context.SessionScoped;
-import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import org.primefaces.PrimeFaces;
@@ -11,7 +10,6 @@ import ru.timur.web3.model.PointBean;
 import ru.timur.web3.view.ErrorHandlingView;
 import ru.timur.web3.view.InputBean;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 @SessionScoped
@@ -20,22 +18,13 @@ public class ControllerBean implements Serializable {
     @Inject
     private InputBean inputBean;
     @Inject
-    private ArchiveBean userArchive;
+    private ArchiveBean archiveBean;
     @Inject
     private AreaCheckBean areaCheckBean;
-    @Inject 
-    private ArchiveDAO archiveDAO;
-    @Inject
-    private ErrorHandlingView errorHandlingView;
 
     public void processRequest() {
-        userArchive.addPoint(areaCheckBean.processInput(inputBean));
-        PointBean pointBean = userArchive.getFirstPoint();
-        try {
-            archiveDAO.saveData(pointBean);
-        } catch (Exception e) {
-            errorHandlingView.handleError("Возникла ошибка сервера. Печалька...", e);
-        }
-        PrimeFaces.current().executeScript("draw_point(" + pointBean.getX() + ", " + pointBean.getY() + ", " + pointBean.isHit() + ");");
+        PointBean newPoint = areaCheckBean.processInput(inputBean);
+        archiveBean.addPoint(newPoint);
+        PrimeFaces.current().executeScript("draw_point(" + newPoint.getX() + ", " + newPoint.getY() + ", " + newPoint.isHit() + ");");
     }
 }

@@ -22,6 +22,7 @@ function get_click_coordinates(xClick, yClick) {
 }
 
 function draw_point(x, y, hit) {
+    if(hit == null) return;
     calculator.setExpression({
         latex: `(${x}, ${y})`, // Задание координат точки
         color: hit ? 'green' : 'red' // Цвет точки

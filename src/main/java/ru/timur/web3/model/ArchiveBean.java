@@ -2,17 +2,13 @@ package ru.timur.web3.model;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.SneakyThrows;
 import ru.timur.web3.db.ArchiveDAO;
 import ru.timur.web3.view.ErrorHandlingView;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
 
@@ -33,15 +29,21 @@ public class ArchiveBean implements Serializable {
             archive = new LinkedList<>(archiveDAO.loadData().stream().sorted(Comparator.reverseOrder()).toList());
         } catch (Exception e) {
             archive = new LinkedList<>();
-            errorHandlingView.handleError("Возникла ошибка сервера. Печалька...", e);
+            errorHandlingView.handleError("Возникла непредвиденная ошибка на сервере. Не удалось загрузить данные. :(", e);
         }
     }
 
     public void addPoint(PointBean point) {
+        try {
+            archiveDAO.savePoint(point);
+        } catch (Exception e) {
+            errorHandlingView.handleError("Возникла непредвиденная ошибка на сервере. Не удалось добавить точку. :(", e);
+            return;
+        }
         archive.addFirst(point);
     }
 
     public PointBean getFirstPoint() {
-        return archive.getFirst();
+        return archive.isEmpty() ? null : archive.getFirst();
     }
 }

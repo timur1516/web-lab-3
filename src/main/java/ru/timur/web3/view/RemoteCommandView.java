@@ -32,7 +32,7 @@ public class RemoteCommandView implements Serializable {
             x = Double.parseDouble(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("x"));
             y = Double.parseDouble(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("y"));
         } catch (NumberFormatException e) {
-            errorHandlingView.handleError("Возникла ошибка сервера. Печалька...", e);
+            errorHandlingView.handleError("При передаче данных возникла ошибка. :(", e);
             return;
         }
         inputBean.setX(x);
