@@ -18,4 +18,8 @@
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+    <context-param>
+        <param-name>jakarta.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
 </web-app>

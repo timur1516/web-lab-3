@@ -12,6 +12,7 @@
     </ui:define>
     <ui:define name="js">
         <h:outputScript name="calculator.js" library="js" target="body"/>
+        <h:outputScript name="graph.js" library="js" target="body"/>
         <h:outputScript name="main.js" library="js" target="body"/>
     </ui:define>
     <ui:define name="content">
@@ -42,7 +43,7 @@
                     <div class="form_input r_slider">
                         <h:inputHidden id="r_slider" value="#{inputBean.r}"/>
                         <p:slider for="r_slider" minValue="1" maxValue="4" step="0.25" display="r_label"
-                                  displayTemplate="R: {value}" onSlide="draw_batman(ui.value);">
+                                  displayTemplate="R: {value}" onSlide="draw_graph(ui.value);">
                             <p:ajax listener="#{inputBean.updateR}" immediate="true"/>
                         </p:slider>
                     </div>
