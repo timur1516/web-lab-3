@@ -8,6 +8,7 @@ import org.primefaces.PrimeFaces;
 import ru.timur.web3.db.ArchiveDAO;
 import ru.timur.web3.model.ArchiveBean;
 import ru.timur.web3.model.PointBean;
+import ru.timur.web3.view.ErrorHandlingView;
 import ru.timur.web3.view.InputBean;
 
 import java.io.IOException;
@@ -24,16 +25,16 @@ public class ControllerBean implements Serializable {
     private AreaCheckBean areaCheckBean;
     @Inject 
     private ArchiveDAO archiveDAO;
+    @Inject
+    private ErrorHandlingView errorHandlingView;
 
-    //TODO: Добавить более адекватную обработку исключения от redirect
-    public void processRequest() throws IOException {
+    public void processRequest() {
         userArchive.addPoint(areaCheckBean.processInput(inputBean));
         PointBean pointBean = userArchive.getFirstPoint();
         try {
             archiveDAO.saveData(pointBean);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            FacesContext.getCurrentInstance().getExternalContext().redirect("errorPage.xhtml");
+            errorHandlingView.handleError("Возникла ошибка сервера. Печалька...", e);
         }
         PrimeFaces.current().executeScript("draw_point(" + pointBean.getX() + ", " + pointBean.getY() + ", " + pointBean.isHit() + ");");
     }

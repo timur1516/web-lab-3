@@ -24,11 +24,17 @@ public class RemoteCommandView implements Serializable {
     private ControllerBean controllerBean;
     @Inject
     private InputBean inputBean;
+    @Inject ErrorHandlingView errorHandlingView;
 
-    public void execute() throws IOException {
-        //TODO Добавить проверку некорректных данных
-        double x = Double.parseDouble(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("x"));
-        double y = Double.parseDouble(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("y"));
+    public void execute() {
+        double x, y;
+        try {
+            x = Double.parseDouble(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("x"));
+            y = Double.parseDouble(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("y"));
+        } catch (NumberFormatException e) {
+            errorHandlingView.handleError("Возникла ошибка сервера. Печалька...", e);
+            return;
+        }
         inputBean.setX(x);
         inputBean.setY(y);
         controllerBean.processRequest();

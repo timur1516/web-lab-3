@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import ru.timur.web3.db.ArchiveDAO;
+import ru.timur.web3.view.ErrorHandlingView;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -23,16 +24,16 @@ public class ArchiveBean implements Serializable {
     private LinkedList<PointBean> archive;
     @Inject
     private ArchiveDAO archiveDAO;
+    @Inject
+    private ErrorHandlingView errorHandlingView;
 
-    //TODO: Добавить более адекватную обработку исключения от redirect
     @PostConstruct
-    private void init() throws IOException {
+    private void init() {
         try {
             archive = new LinkedList<>(archiveDAO.loadData().stream().sorted(Comparator.reverseOrder()).toList());
         } catch (Exception e) {
             archive = new LinkedList<>();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("errorPage.xhtml");
-            System.out.println(e.getMessage());
+            errorHandlingView.handleError("Возникла ошибка сервера. Печалька...", e);
         }
     }
 

@@ -82,7 +82,11 @@ window.addEventListener("load", load_data);
 
 document.getElementById('calculator').addEventListener('click', async function (evt) {
     let {x, y} = get_click_coordinates(evt.clientX, evt.clientY);
-    await checkPoint([{name: 'x', value: x}, {name: 'y', value: y}]);
+    try {
+        await checkPoint([{name: 'x', value: x}, {name: 'y', value: y}]);
+    } catch (e){
+        alert('Сервер недоступен. Пожалуйста, попробуйте позже');
+    }
 });
 
 function load_data() {

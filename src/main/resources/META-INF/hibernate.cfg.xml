@@ -9,7 +9,7 @@
         <property name="hibernate.connection.url">jdbc:oracle:thin:@//localhost:1521/orcl</property>
         <property name="hibernate.connection.username">labs</property>
         <property name="hibernate.connection.password">lab_user_passwd</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- org.hibernate.HibernateException: No CurrentSessionContext configured! -->
         <property name="hibernate.current_session_context_class">thread</property>
