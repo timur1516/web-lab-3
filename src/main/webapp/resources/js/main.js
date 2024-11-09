@@ -9,6 +9,17 @@ document.getElementById('calculator').addEventListener('click', async function (
     }
 });
 
+function display_point(x, y, hit){
+    const animatedDiv = document.getElementById('main_form');
+    animatedDiv.classList.add('animate');
+    animatedDiv.style.pointerEvents = 'none';
+    animatedDiv.addEventListener('animationend', function() {
+        animatedDiv.classList.remove('animate');
+        animatedDiv.style.pointerEvents = 'auto';
+        draw_point(x, y, hit);
+    }, { once: true });
+}
+
 function load_data() {
     draw_graph(Number(document.getElementById("form:r_slider").value));
     const table = document.querySelector("#archive tbody");

@@ -30,6 +30,6 @@ public class ControllerBean implements Serializable {
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
         newPoint.setSessionId(session == null ? "undefined" : session.getId());
         archiveBean.addPoint(newPoint);
-        PrimeFaces.current().executeScript("draw_point(" + newPoint.getX() + ", " + newPoint.getY() + ", " + newPoint.isHit() + ");");
+        PrimeFaces.current().executeScript("display_point(" + newPoint.getX() + ", " + newPoint.getY() + ", " + newPoint.isHit() + ");");
     }
 }

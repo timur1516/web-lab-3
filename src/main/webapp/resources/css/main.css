@@ -78,3 +78,14 @@ td, th {
     display: flex;
     justify-content: center;
 }
+
+.animate {
+    animation: popDiv 5s alternate ease-in-out;
+    transform-style: preserve-3d; /* Сохраняем 3D-эффект */
+}
+
+@keyframes popDiv {
+    0%   { transform: scale(1) rotateX(0deg); }
+    50%  { transform: scale(0) rotateX(180deg); }
+    100% { transform: scale(1) rotateX(0deg); }
+}
