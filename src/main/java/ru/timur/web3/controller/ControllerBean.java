@@ -24,12 +24,12 @@ public class ControllerBean implements Serializable {
     @Inject
     private AreaCheckBean areaCheckBean;
 
-    public void processRequest() {
+    public void processRequest(boolean doAnimation) {
         PointBean newPoint = areaCheckBean.processInput(inputBean);
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
         newPoint.setSessionId(session == null ? "undefined" : session.getId());
         archiveBean.addPoint(newPoint);
-        PrimeFaces.current().executeScript("display_point(" + newPoint.getX() + ", " + newPoint.getY() + ", " + newPoint.isHit() + ");");
+        PrimeFaces.current().executeScript("display_point(" + newPoint.getX() + ", " + newPoint.getY() + ", " + newPoint.isHit() + ", " + doAnimation + ");");
     }
 }

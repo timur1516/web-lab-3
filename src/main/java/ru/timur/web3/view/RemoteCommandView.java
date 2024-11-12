@@ -32,7 +32,7 @@ public class RemoteCommandView implements Serializable {
         }
         inputBean.setX(x);
         inputBean.setY(y);
-        controllerBean.processRequest();
+        controllerBean.processRequest(false);
 
         PrimeFaces.current().ajax().addCallbackParam("hit", userArchive.getFirstPoint().isHit());
     }

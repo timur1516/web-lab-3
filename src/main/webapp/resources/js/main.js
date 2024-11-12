@@ -1,20 +1,16 @@
 window.addEventListener("load", load_data);
 
-let IS_ANIMATE = true;
-
 document.getElementById('calculator').addEventListener('click', async function (evt) {
     let {x, y} = get_click_coordinates(evt.clientX, evt.clientY);
     try {
-        IS_ANIMATE = false;
         await checkPoint([{name: 'x', value: x}, {name: 'y', value: y}]);
     } catch (e){
         alert('Сервер недоступен. Пожалуйста, попробуйте позже');
     }
 });
 
-function display_point(x, y, hit){
-    if(IS_ANIMATE) completeAnimation();
-    IS_ANIMATE = true;
+function display_point(x, y, hit, doAnimation){
+    if(doAnimation) completeAnimation();
     draw_point(x, y, hit);
 }
 

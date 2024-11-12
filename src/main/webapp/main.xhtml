@@ -48,7 +48,7 @@
                         </p:slider>
                     </div>
                 </div>
-                <h:commandButton actionListener="#{controllerBean.processRequest()}" value="Отправить">
+                <h:commandButton actionListener="#{controllerBean.processRequest(true)}" value="Отправить">
                     <f:ajax execute="@form" render="archive messages"/>
                 </h:commandButton>
             </h:form>
