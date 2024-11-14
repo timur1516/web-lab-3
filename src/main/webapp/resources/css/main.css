@@ -4,7 +4,6 @@
     justify-content: center;
     margin: 10px auto;
     padding: 10px;
-    border: 2px solid blue;
     border-radius: 20px;
     box-shadow: 0 0 10px 10px blue;
 }
@@ -85,7 +84,7 @@ td, th {
 }
 
 @keyframes popDiv {
-    0%   { transform: scale(1) rotateX(0deg); }
-    50%  { transform: scale(0) rotateX(180deg); }
-    100% { transform: scale(1) rotateX(0deg); }
+    0%   { transform: scale(1) rotateX(0deg) rotateY(0deg); }
+    50%  { transform: scale(0) rotateX(180deg) rotateY(180deg); }
+    100% { transform: scale(1) rotateX(0deg) rotateY(0deg); }
 }

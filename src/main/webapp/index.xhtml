@@ -10,6 +10,9 @@
     <ui:define name="css">
         <h:outputStylesheet name="index.css" library="css"/>
     </ui:define>
+    <ui:define name="js">
+        <h:outputScript name="index.js" library="js" target="body"/>
+    </ui:define>
     <ui:define name="content">
         <div id="clocks">
             <h:outputText id="time_output" value="#{timeBean.time}"/>
