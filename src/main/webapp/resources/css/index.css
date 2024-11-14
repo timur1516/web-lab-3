@@ -14,12 +14,23 @@
     margin: 20px auto;
     padding: 10px;
     border-radius: 20px;
+    animation: borderColorChange 5s linear infinite;
 }
 
-/*@keyframes borderColorChange {*/
-/*    0%   { box-shadow: 0 0 10px 10px rgb(255, 0, 0); }    !* красный *!*/
-/*    25%  { box-shadow: 0 0 10px 10px rgb(0, 255, 0); }    !* зеленый *!*/
-/*    50%  { box-shadow: 0 0 10px 10px rgb(0, 0, 255); }    !* синий *!*/
-/*    75%  { box-shadow: 0 0 10px 10px rgb(255, 255, 0); }  !* желтый *!*/
-/*    100% { box-shadow: 0 0 10px 10px rgb(255, 0, 255); }  !* фиолетовый *!*/
-/*}*/
+#header, #footer{
+    animation: borderColorChange 5s linear infinite;
+}
+
+@keyframes borderColorChange {
+    0%    { box-shadow: 0 0 10px 10px rgb(255, 0, 0); }
+    10%   { box-shadow: 0 0 10px 10px rgb(255, 128, 0); }
+    20%   { box-shadow: 0 0 10px 10px rgb(255, 255, 0); }
+    30%   { box-shadow: 0 0 10px 10px rgb(128, 255, 0); }
+    40%   { box-shadow: 0 0 10px 10px rgb(0, 255, 0); }
+    50%   { box-shadow: 0 0 10px 10px rgb(0, 255, 128); }
+    60%   { box-shadow: 0 0 10px 10px rgb(0, 255, 255); }
+    70%   { box-shadow: 0 0 10px 10px rgb(0, 128, 255); }
+    80%   { box-shadow: 0 0 10px 10px rgb(0, 0, 255); }
+    90%   { box-shadow: 0 0 10px 10px rgb(128, 0, 255); }
+    100%  { box-shadow: 0 0 10px 10px rgb(255, 0, 255); } 
+}
