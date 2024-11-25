@@ -17,17 +17,13 @@ public class AreaCheckBean implements Serializable {
         pointBean.setR(input.getR());
 
         long startTime = System.nanoTime() / 1000;
-        pointBean.setHit(isHit(pointBean));
+        pointBean.setHit(isHit(pointBean.getX(), pointBean.getY(), pointBean.getR()));
         long endTime = System.nanoTime() / 1000;
         pointBean.setCalculationTime(endTime - startTime);
         return pointBean;
     }
 
-    private boolean isHit(PointBean pointBean) {
-        double x = pointBean.getX();
-        double y = pointBean.getY();
-        double r = pointBean.getR();
-
+    public boolean isHit(double x, double y, double r) {
         return x * x + y * y <= r * r && y >= 0 && x >= 0 ||
                 y <= 2 * x + r && y >= 0 && x <= 0 ||
                 -r <= x && x <= 0 && -r / 2 <= y && y <= 0;

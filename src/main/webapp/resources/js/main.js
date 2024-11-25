@@ -9,6 +9,16 @@ document.getElementById('calculator').addEventListener('click', async function (
     }
 });
 
+async function updateGraph(r){
+    clearGraph();
+    draw_graph(r);
+    const data = await recalculatePoints([{name: 'r', value: r}]);
+    const points = JSON.parse(data.jqXHR.pfArgs.result);
+    points.forEach(point => {
+        draw_point(point.x, point.y, point.hit);
+    })
+}
+
 function display_point(x, y, hit, doAnimation){
     if(doAnimation) completeAnimation();
     draw_point(x, y, hit);

@@ -20,8 +20,14 @@ function get_click_coordinates(xClick, yClick) {
     })
 }
 
+function clearGraph() {
+    calculator.getExpressions().forEach(expression => {
+        calculator.removeExpression({id: expression.id});
+    })
+}
+
 function draw_point(x, y, hit) {
-    if(hit == null) return;
+    if (hit == null) return;
     calculator.setExpression({
         latex: `(${x}, ${y})`, // Задание координат точки
         color: hit ? 'green' : 'red' // Цвет точки
