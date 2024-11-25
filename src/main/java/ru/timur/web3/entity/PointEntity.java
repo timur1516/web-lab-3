@@ -1,4 +1,4 @@
-package ru.timur.web3.model;
+package ru.timur.web3.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "ARCHIVE")
-public class PointBean implements Serializable, Comparable<PointBean> {
+public class PointEntity implements Serializable, Comparable<PointEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
@@ -44,7 +44,7 @@ public class PointBean implements Serializable, Comparable<PointBean> {
     private String sessionId;
 
     @Override
-    public int compareTo(PointBean o) {
+    public int compareTo(PointEntity o) {
         if (this.id == o.id) return 0;
         return this.id < o.id ? -1 : 1;
     }

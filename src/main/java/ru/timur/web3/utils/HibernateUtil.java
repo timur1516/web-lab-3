@@ -1,4 +1,4 @@
-package ru.timur.web3.db;
+package ru.timur.web3.utils;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;

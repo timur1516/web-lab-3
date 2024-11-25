@@ -5,7 +5,7 @@ import jakarta.inject.Inject;
 import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
-import ru.timur.web3.model.ArchiveBean;
+import ru.timur.web3.entity.ArchiveEntity;
 
 import java.io.Serializable;
 
@@ -13,7 +13,7 @@ import java.io.Serializable;
 @ApplicationScoped
 public class SessionTimeoutListener implements HttpSessionListener, Serializable {
     @Inject
-    private ArchiveBean archiveBean;
+    private ArchiveEntity archiveEntity;
 
     @Override
     public void sessionCreated(HttpSessionEvent event) {
@@ -23,6 +23,6 @@ public class SessionTimeoutListener implements HttpSessionListener, Serializable
     @Override
     public void sessionDestroyed(HttpSessionEvent event) {
         System.out.println("Session finished: " + event.getSession().getId());
-        archiveBean.removeSessionData(event.getSession().getId());
+        archiveEntity.removeSessionData(event.getSession().getId());
     }
 }

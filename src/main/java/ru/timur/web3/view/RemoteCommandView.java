@@ -6,9 +6,9 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import org.primefaces.PrimeFaces;
-import ru.timur.web3.PointDTO;
+import ru.timur.web3.dto.PointDTO;
 import ru.timur.web3.controller.AreaCheckBean;
-import ru.timur.web3.model.ArchiveBean;
+import ru.timur.web3.entity.ArchiveEntity;
 import ru.timur.web3.controller.ControllerBean;
 
 import java.io.Serializable;
@@ -18,7 +18,7 @@ import java.util.List;
 @ViewScoped
 public class RemoteCommandView implements Serializable {
     @Inject
-    private ArchiveBean userArchive;
+    private ArchiveEntity userArchive;
     @Inject
     private ControllerBean controllerBean;
     @Inject

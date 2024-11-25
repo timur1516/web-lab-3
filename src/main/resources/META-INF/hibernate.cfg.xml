@@ -8,6 +8,6 @@
 
         <property name="hibernate.current_session_context_class">thread</property>
 
-        <mapping class="ru.timur.web3.model.PointBean"/>
+        <mapping class="ru.timur.web3.entity.PointEntity"/>
     </session-factory>
 </hibernate-configuration>

@@ -1,4 +1,4 @@
-package ru.timur.web3.model;
+package ru.timur.web3.entity;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -6,7 +6,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ru.timur.web3.db.ArchiveDAO;
+import ru.timur.web3.dao.ArchiveDAO;
 import ru.timur.web3.view.ErrorHandlingView;
 
 import java.io.Serializable;
@@ -16,8 +16,8 @@ import java.util.*;
 @Named
 @NoArgsConstructor
 @ApplicationScoped
-public class ArchiveBean implements Serializable {
-    private LinkedList<PointBean> archive;
+public class ArchiveEntity implements Serializable {
+    private LinkedList<PointEntity> archive;
     @Inject
     private ArchiveDAO archiveDAO;
     @Inject
@@ -33,7 +33,7 @@ public class ArchiveBean implements Serializable {
         }
     }
 
-    public synchronized void addPoint(PointBean point) {
+    public synchronized void addPoint(PointEntity point) {
         try {
             archiveDAO.savePoint(point);
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class ArchiveBean implements Serializable {
         archive.addFirst(point);
     }
 
-    public synchronized PointBean getFirstPoint() {
+    public synchronized PointEntity getFirstPoint() {
         return archive.isEmpty() ? null : archive.getFirst();
     }
 

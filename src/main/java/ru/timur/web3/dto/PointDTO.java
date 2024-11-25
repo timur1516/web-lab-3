@@ -1,4 +1,4 @@
-package ru.timur.web3;
+package ru.timur.web3.dto;
 
 import lombok.*;
 
